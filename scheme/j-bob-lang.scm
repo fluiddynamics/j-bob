@@ -18,19 +18,28 @@
   (if (s.< (num x) (num y)) 't 'nil))
 
 (define-syntax if
-  (syntax-rules ()
-    ((_ Q A E)
-     (if/nil Q (lambda () A) (lambda () E)))))
+    ((if ?Q ?A ?E)
+     (if/nil ?Q (lambda () ?A) (lambda () ?E))))
 
 (define-syntax defun
-  (syntax-rules ()
-    ((_ name (arg ...) body)
-     (define (name arg ...) body))))
+  ((defun ?name () ?body) (define (?name) ?body))
+  ((defun ?name (?arg1) ?body) (define (?name ?arg1) ?body))
+  ((defun ?name (?arg1 ?arg2) ?body) (define (?name ?arg1 ?arg2) ?body))
+  ((defun ?name (?arg1 ?arg2 ?arg3) ?body) (define (?name ?arg1 ?arg2 ?arg3) ?body))
+  ((defun ?name (?arg1 ?arg2 ?arg3 ?arg4) ?body) (define (?name ?arg1 ?arg2 ?arg3 ?arg4) ?body))
+  ((defun ?name (?arg1 ?arg2 ?arg3 ?arg4 ?arg5) ?body) (define (?name ?arg1 ?arg2 ?arg3 ?arg4 ?arg5) ?body))
+  ((defun ?name (?arg1 ?arg2 ?arg3 ?arg4 ?arg5 ?arg6) ?body) (define (?name ?arg1 ?arg2 ?arg3 ?arg4 ?arg5 ?arg6) ?body)))
 
-(define-syntax dethm
-  (syntax-rules ()
-    ((_ name (arg ...) body)
-     (define (name arg ...) body))))
+
+  (define-syntax dethm
+    ((dethm ?name () ?body) (define (?name) ?body))
+    ((dethm ?name (?arg1) ?body) (define (?name ?arg1) ?body))
+    ((dethm ?name (?arg1 ?arg2) ?body) (define (?name ?arg1 ?arg2) ?body))
+    ((dethm ?name (?arg1 ?arg2 ?arg3) ?body) (define (?name ?arg1 ?arg2 ?arg3) ?body))
+    ((dethm ?name (?arg1 ?arg2 ?arg3 ?arg4) ?body) (define (?name ?arg1 ?arg2 ?arg3 ?arg4) ?body))
+    ((dethm ?name (?arg1 ?arg2 ?arg3 ?arg4 ?arg5) ?body) (define (?name ?arg1 ?arg2 ?arg3 ?arg4 ?arg5) ?body))
+    ((dethm ?name (?arg1 ?arg2 ?arg3 ?arg4 ?arg5 ?arg6) ?body) (define (?name ?arg1 ?arg2 ?arg3 ?arg4 ?arg5 ?arg6) ?body)))
+
 
 (defun size (x)
   (if (atom x)
