@@ -45,3 +45,6 @@
   (if (atom x)
     '0
     (+ '1 (+ (size (car x)) (size (cdr x))))))
+
+
+(define (integer? x) (isinstance x (type 0)))
